@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacConsoleEdition", "TicTacConsoleEdition\TicTacConsoleEdition.csproj", "{216F41DC-DEEF-4416-84AC-EE6576E4E6B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connector", "Connector\Connector.csproj", "{2BDF3955-24A6-4E42-9E4C-DC2F864E2E3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLib", "GameLib\GameLib.csproj", "{3B84AF87-6DCD-4F79-AF40-9F4D3F177B5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{216F41DC-DEEF-4416-84AC-EE6576E4E6B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216F41DC-DEEF-4416-84AC-EE6576E4E6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216F41DC-DEEF-4416-84AC-EE6576E4E6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216F41DC-DEEF-4416-84AC-EE6576E4E6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BDF3955-24A6-4E42-9E4C-DC2F864E2E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BDF3955-24A6-4E42-9E4C-DC2F864E2E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BDF3955-24A6-4E42-9E4C-DC2F864E2E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BDF3955-24A6-4E42-9E4C-DC2F864E2E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B84AF87-6DCD-4F79-AF40-9F4D3F177B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B84AF87-6DCD-4F79-AF40-9F4D3F177B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B84AF87-6DCD-4F79-AF40-9F4D3F177B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B84AF87-6DCD-4F79-AF40-9F4D3F177B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
