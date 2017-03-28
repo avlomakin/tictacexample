@@ -70,8 +70,15 @@
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Command\SimpleCommand.cs" />
+    <Compile Include="Model\HotSeatModel.cs" />
+    <Compile Include="Model\StringEventArgs.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Game\HotSeatPageViewModel.cs" />
     <Compile Include="ViewModel\Login\AuthPageViewModel.cs" />
+    <Compile Include="View\Game\BorderConverter.cs" />
+    <Compile Include="View\Game\HotSeatPageView.xaml.cs">
+      <DependentUpon>HotSeatPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Game\TopHubPageView.xaml.cs">
       <DependentUpon>TopHubPageView.xaml</DependentUpon>
     </Compile>
@@ -84,6 +91,10 @@
     <Compile Include="View\Login\WelcomePageView.xaml.cs">
       <DependentUpon>WelcomePageView.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Game\HotSeatPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Game\TopHubPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,9 +153,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
+    <Resource Include="src\leaderboard.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameLogic\GameLogic.csproj">
+      <Project>{CC43ABF1-96C8-4497-8EA1-D05B96E24F51}</Project>
+      <Name>GameLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UttUserService\UttUserService.csproj">
       <Project>{83184AA9-CC11-4884-AAC4-A7D09B69BEA4}</Project>
       <Name>UttUserService</Name>
@@ -153,6 +168,15 @@
   <ItemGroup>
     <Resource Include="src\logo\big.png" />
     <Resource Include="src\logo\small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\game\cells\cross.png" />
+    <Resource Include="src\game\cells\empty.png" />
+    <Resource Include="src\game\cells\nought.png" />
+    <Resource Include="src\game\field.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UltraTT"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="UltraTT" Height="400" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Frame Grid.Row="0" Height="70" Source="Game/TopHubPageView.xaml"></Frame>
-        <Frame Grid.Row="1" Source="Login/AuthPageView.xaml"></Frame>
+        <Frame Name="FF"  Grid.Row="0" Height="71" Source="Game/TopHubPageView.xaml"></Frame>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Frame Name="WorkingFrame" Grid.Column="1" Source="Game/HotSeatPageView.xaml"/>
+        </Grid>
+        
     </Grid>
 </Window>

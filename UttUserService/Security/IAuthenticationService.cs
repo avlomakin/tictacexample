@@ -4,6 +4,6 @@ namespace UttUserService.Security
 {
     public interface IAuthenticationService
     {
-        User AuthenticateUser(string username, string textPpassword);
+        User AuthenticateUser(string username, string textPassword);
     }
 }
