@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UltraTT.ViewModel.Game;
 
 namespace UltraTT.View.Game
 {
@@ -23,6 +24,7 @@ namespace UltraTT.View.Game
         public TopHubPageView()
         {
             InitializeComponent();
+            DataContext = new TopHubPageViewModel();
         }
     }
 }

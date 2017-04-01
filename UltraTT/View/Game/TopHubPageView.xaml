@@ -5,6 +5,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:UltraTT.View.Game"
+      xmlns:viewModel="clr-namespace:UltraTT.ViewModel.Game"
+      d:DataContext="{d:DesignInstance viewModel:TopHubPageViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="71" d:DesignWidth="525"
       Title="TopHubPageView">
@@ -63,8 +65,10 @@
             <RowDefinition Height="1"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0"  Content="Hot seat" Style="{StaticResource HubTextedButton}">
-        </Button>
+        <Button Grid.Row="0" Grid.Column="0"  Content="Hot seat" Style="{StaticResource HubTextedButton}"
+                Command="{Binding ShowCommand}" CommandParameter="{Binding HotSeat, BindsDirectlyToSource=True}"/>
+        
+        
         <Button Grid.Row="0" Grid.Column="1" Content="Online" Style="{StaticResource HubTextedButton}"/>
 
         

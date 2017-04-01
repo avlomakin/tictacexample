@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,24 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using UltraTT.View.Game;
 
-namespace UltraTT.View
+namespace UltraTT.View.Game
 {
     /// <summary>
-    /// Interaction logic for HostWindowView.xaml
+    /// Interaction logic for WelcomePageView.xaml
     /// </summary>
-    public partial class HostWindowView : Window, IContentHolder
+    public partial class WelcomePageView : Page
     {
-        public HostWindowView()
+        public WelcomePageView()
         {
             InitializeComponent();
-        }
-
-        public void ShowContent(object content)
-        {
-            WorkingFrame.Content = content;
+            WelcomeLabel.Content = "Welcome, " + Thread.CurrentPrincipal.Identity.Name;
         }
     }
 }

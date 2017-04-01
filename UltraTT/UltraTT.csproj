@@ -74,8 +74,19 @@
     <Compile Include="Model\StringEventArgs.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Game\HotSeatPageViewModel.cs" />
+    <Compile Include="ViewModel\Game\TopHubPageViewModel.cs" />
     <Compile Include="ViewModel\Login\AuthPageViewModel.cs" />
     <Compile Include="View\Game\BorderConverter.cs" />
+    <Compile Include="View\Game\WelcomePageView.xaml.cs">
+      <DependentUpon>WelcomePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HostWindowView.xaml.cs">
+      <DependentUpon>HostWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IContentHolder.cs" />
+    <Compile Include="View\Game\GameHostPageView.xaml.cs">
+      <DependentUpon>GameHostPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Game\HotSeatPageView.xaml.cs">
       <DependentUpon>HotSeatPageView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +102,11 @@
     <Compile Include="View\Login\WelcomePageView.xaml.cs">
       <DependentUpon>WelcomePageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Navigator.cs" />
+    <Page Include="View\Game\GameHostPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Game\HotSeatPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,20 +115,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Login\AuthPageView.xaml">
+    <Page Include="View\Game\WelcomePageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HostWindowView.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Login\AuthPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\HostWindowView.xaml.cs">
-      <DependentUpon>HostWindowView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Login\RegPageView.xaml">
@@ -177,6 +193,9 @@
     <Resource Include="src\game\cells\empty.png" />
     <Resource Include="src\game\cells\nought.png" />
     <Resource Include="src\game\field.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\logo\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

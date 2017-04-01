@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using UltraTT.View;
 using UttUserService.Security;
 
 namespace UltraTT
@@ -23,6 +24,15 @@ namespace UltraTT
 
             base.OnStartup(e);
 
+        }
+
+        public void AppStart(object sender, StartupEventArgs e)
+        {
+            var window = new HostWindowView();
+            MainWindow = window;
+            window.Show();
+
+            Navigator.GetInstance().Start(window);
         }
     }
 }

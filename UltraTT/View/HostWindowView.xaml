@@ -1,25 +1,13 @@
-﻿<Window x:Class="UltraTT.View.MainWindow"
+﻿<Window x:Class="UltraTT.View.HostWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UltraTT"
+        xmlns:local="clr-namespace:UltraTT.View"
         mc:Ignorable="d"
-        Title="UltraTT" Height="400" Width="525">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Frame Name="FF"  Grid.Row="0" Height="71" Source="Game/TopHubPageView.xaml"></Frame>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Frame Name="WorkingFrame" Grid.Column="1" Source="Game/HotSeatPageView.xaml"/>
-        </Grid>
-        
-    </Grid>
+        Icon="../src/logo/icon.ico"
+        Title="UltraTT" Height="440" Width="525">
+    <DockPanel>
+        <Frame Name="WorkingFrame" Style="{StaticResource AppFrame}"></Frame>
+    </DockPanel>
 </Window>

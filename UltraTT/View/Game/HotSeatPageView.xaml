@@ -17,13 +17,8 @@
         </Grid.RowDefinitions>
 
 
-        <Grid Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label Content="{Binding CurrentPlayer, Mode=OneWay}"/>
-        </Grid>
-        
+        <Label Content="{Binding CurrentPlayer, Mode=OneWay}"/>
+
 
 
         <Grid  Grid.Row="1" Name="FieldHolder" VerticalAlignment="Top">

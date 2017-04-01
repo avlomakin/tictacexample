@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using UltraTT.Command;
+using UltraTT.View;
 using UttUserService;
 using UttUserService.DB.Entities;
 using UttUserService.Security;
@@ -104,6 +105,7 @@ namespace UltraTT.ViewModel.Login
                 ErrorText = "SUCCESS";
                 Username = string.Empty; //reset
                 Password = string.Empty;
+                Navigator.GetInstance().AuthCompleted();
             }
             catch (UnauthorizedAccessException)
             {

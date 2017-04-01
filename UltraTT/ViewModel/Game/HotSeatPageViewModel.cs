@@ -42,6 +42,7 @@ namespace UltraTT.ViewModel.Game
         }
 
 
+        #region Properties
 
         private string[] _pathToBigCellPict;
         public string[] PathToBigCellPict
@@ -121,22 +122,17 @@ namespace UltraTT.ViewModel.Game
             }
         }
 
+        #endregion
 
+        #region EventHandlers
 
-        public bool CheckCell(object obj)
+        public void OnBigCellOwnerChanged(object sender, StringEventArgs args)
         {
+            int position = int.Parse(args.Message.Split(',')[0]);
+            int owner = int.Parse(args.Message.Split(',')[1]);
 
-            var bigCell = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item1;
-            var position = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item2;
-            return _model.CheckCell(bigCell, position);
-        }
-
-        private void MakeStep(object obj)
-        {
-            var bigCell = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item1;
-            var position = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item2;
-
-            _model.TryMakeStep(bigCell, position);
+            PathToBigCellPict[position] = GetCellPictPath((Cell)owner);
+            OnPropertyChanged(nameof(PathToBigCellPict));
         }
 
 
@@ -177,6 +173,28 @@ namespace UltraTT.ViewModel.Game
             CurrentPlayer = args.Message;
         }
 
+        #endregion
+
+
+        public bool CheckCell(object obj)
+        {
+
+            var bigCell = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item1;
+            var position = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item2;
+            return _model.CheckCell(bigCell, position);
+        }
+
+        private void MakeStep(object obj)
+        {
+            var bigCell = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item1;
+            var position = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item2;
+
+            _model.TryMakeStep(bigCell, position);
+        }
+
+
+       
+
         private static string GetCellPictPath(Cell cellType)
         {
             switch (cellType)
@@ -192,14 +210,7 @@ namespace UltraTT.ViewModel.Game
             }
         }
 
-        public void OnBigCellOwnerChanged(object sender, StringEventArgs args)
-        {
-            int position = int.Parse(args.Message.Split(',')[0]);
-            int owner = int.Parse(args.Message.Split(',')[1]);
-
-            PathToBigCellPict[position] = GetCellPictPath((Cell)owner);
-            OnPropertyChanged(nameof(PathToBigCellPict));
-        }
+       
 
         private Tuple<int, int> CoordChanger(int x, int y)
         {
