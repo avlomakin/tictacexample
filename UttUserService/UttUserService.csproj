@@ -38,6 +38,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -50,15 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Security\AnonymousIdentity.cs" />
-    <Compile Include="DB\Entities\Password.cs" />
-    <Compile Include="DB\Entities\Role.cs" />
-    <Compile Include="DB\Entities\User.cs" />
-    <Compile Include="DB\AuthContext.cs" />
+    <Compile Include="Security\Password.cs" />
+    <Compile Include="Security\Role.cs" />
+    <Compile Include="Security\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthenticationService.cs" />
     <Compile Include="Security\IAuthenticationService.cs" />
     <Compile Include="Security\UttIdentity.cs" />
     <Compile Include="Security\UttPrincipal.cs" />
+    <Compile Include="Social\Leaderboard.cs" />
+    <Compile Include="Social\Statistics.cs" />
+    <Compile Include="Social\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

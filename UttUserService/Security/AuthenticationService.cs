@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using UttUserService.DB;
-using UttUserService.DB.Entities;
 
 namespace UttUserService.Security
 {
@@ -12,9 +10,7 @@ namespace UttUserService.Security
     {
         public User AuthenticateUser(string username, string textPassword)
         {
-            //AuthContext authContext = new AuthContext();
-            //User user = authContext.Users.FirstOrDefault(u => u.Username == username);
-            User user = _users.FirstOrDefault(u => u.Username == username);
+            User user = Users.FirstOrDefault(u => u.Username == username);
 
 
             if (user == null)
@@ -22,7 +18,6 @@ namespace UttUserService.Security
                 throw new UnauthorizedAccessException();
             }
 
-            //Password userPassword = authContext.Passwords.FirstOrDefault(p => p.User.Id == user.Id);
             Password userPassword = user.Password;
 
             if (userPassword == null)
@@ -52,7 +47,7 @@ namespace UttUserService.Security
 
         #region NeedDelete
 
-        private static readonly List<User> _users = new List<User>()
+        private static readonly List<User> Users = new List<User>()
         {
             new User()
             {

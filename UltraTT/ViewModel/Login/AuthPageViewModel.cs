@@ -2,8 +2,6 @@
 using System.Threading;
 using UltraTT.Command;
 using UltraTT.View;
-using UttUserService;
-using UttUserService.DB.Entities;
 using UttUserService.Security;
 
 namespace UltraTT.ViewModel.Login

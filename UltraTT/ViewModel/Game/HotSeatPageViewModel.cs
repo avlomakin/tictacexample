@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameLogic;
 using UltraTT.Command;
@@ -24,36 +25,70 @@ namespace UltraTT.ViewModel.Game
             _model.ChangeCellPict += OnChangeCellPict;
             _model.ChangeBigCellPict += OnBigCellOwnerChanged;
 
-            PathToCellPict = new string[81];
-            PathToBigCellPict = new string[9];
             _currentPlayer = Cross;
+
+            _smallCells = new List<List<ViewModelCell>>();
 
             for (int i = 0; i < 9; i++)
             {
-                _pathToBigCellPict[i] = null;
+                _smallCells.Add(new List<ViewModelCell>());
                 for (int j = 0; j < 9; j++)
                 {
-                    _pathToCellPict[i * 9 + j] = GetCellPictPath(Cell.Empty);
+                    var vmCell = new ViewModelCell();
+                    vmCell.PictSource = GetCellPictPath(Cell.Empty);
+                    vmCell.Coords = CoordChanger(i, j);
+                    _smallCells[i].Add(vmCell);
                 }
             }
+
+            _bigCells = new List<List<ViewModelCell>>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                _bigCells.Add(new List<ViewModelCell>());
+                for (int j = 0; j < 3; j++)
+                {
+                    var vmCell = new ViewModelCell();
+                    vmCell.PictSource = GetBigCellPictPath(Cell.Empty);
+                    vmCell.Coords = null;
+                    _bigCells[i].Add(vmCell);
+                }
+            }
+
 
             _cellClick = new RelayCommand(MakeStep, CheckCell);
 
         }
 
-
         #region Properties
 
-        private string[] _pathToBigCellPict;
-        public string[] PathToBigCellPict
+        public double CellSize => 30;
+
+        private List<List<ViewModelCell>> _smallCells;
+        public List<List<ViewModelCell>> SmallCells
         {
             get
             {
-                return _pathToBigCellPict;
+                return _smallCells;
             }
             set
             {
-                _pathToBigCellPict = value;
+                _smallCells = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private List<List<ViewModelCell>> _bigCells;
+        public List<List<ViewModelCell>> BigCells
+        {
+            get
+            {
+                return _bigCells;
+            }
+            set
+            {
+                _bigCells = value;
 
                 OnPropertyChanged();
             }
@@ -106,22 +141,6 @@ namespace UltraTT.ViewModel.Game
             }
         }
 
-
-        private string[] _pathToCellPict;
-        public string[] PathToCellPict
-        {
-            get
-            {
-                return _pathToCellPict;
-            }
-            set
-            {
-                _pathToCellPict = value;
-
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region EventHandlers
@@ -131,8 +150,7 @@ namespace UltraTT.ViewModel.Game
             int position = int.Parse(args.Message.Split(',')[0]);
             int owner = int.Parse(args.Message.Split(',')[1]);
 
-            PathToBigCellPict[position] = GetCellPictPath((Cell)owner);
-            OnPropertyChanged(nameof(PathToBigCellPict));
+            BigCells[position / 3][position % 3].PictSource = GetBigCellPictPath((Cell)owner);
         }
 
 
@@ -164,8 +182,7 @@ namespace UltraTT.ViewModel.Game
             var i = CoordChanger(bigCell, position).Item1;
             var j = CoordChanger(bigCell, position).Item2;
 
-            PathToCellPict[i * 9 + j] = GetCellPictPath(CurrentPlayer == Cross ? Cell.Cross : Cell.Nought);
-            OnPropertyChanged(nameof(PathToCellPict));
+            SmallCells[i][j].PictSource = GetCellPictPath(CurrentPlayer == Cross ? Cell.Cross : Cell.Nought);
         }
 
         public void OnSetPlayer(object sender, StringEventArgs args)
@@ -178,16 +195,16 @@ namespace UltraTT.ViewModel.Game
 
         public bool CheckCell(object obj)
         {
-
-            var bigCell = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item1;
-            var position = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item2;
+            if (obj == null) return true;
+            var bigCell = ((Tuple<int, int>)obj).Item1;
+            var position =((Tuple<int, int>)obj).Item2;
             return _model.CheckCell(bigCell, position);
         }
 
         private void MakeStep(object obj)
         {
-            var bigCell = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item1;
-            var position = CoordChanger(((Tuple<int, int>)obj).Item1, ((Tuple<int, int>)obj).Item2).Item2;
+            var bigCell = ((Tuple<int, int>)obj).Item1;
+            var position = ((Tuple<int, int>)obj).Item2;
 
             _model.TryMakeStep(bigCell, position);
         }
@@ -210,9 +227,22 @@ namespace UltraTT.ViewModel.Game
             }
         }
 
-       
+        private static string GetBigCellPictPath(Cell cellType)
+        {
+            switch (cellType)
+            {
+                case Cell.Empty:
+                    return "../../src/game/cells/empty.png";
+                case Cell.Cross:
+                    return "../../src/game/cells/big_cross.png";
+                case Cell.Nought:
+                    return "../../src/game/cells/big_nought.png";
+                default:
+                    return null;
+            }
+        }
 
-        private Tuple<int, int> CoordChanger(int x, int y)
+        private static Tuple<int, int> CoordChanger(int x, int y)
         {
             return new Tuple<int, int>((x / 3) * 3 + y / 3, (x % 3) * 3 + y % 3);
         }

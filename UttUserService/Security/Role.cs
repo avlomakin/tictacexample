@@ -1,4 +1,4 @@
-﻿namespace UttUserService.DB.Entities
+﻿namespace UttUserService.Security
 {
     public enum Role : byte
     {

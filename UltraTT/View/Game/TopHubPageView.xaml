@@ -49,7 +49,7 @@
 
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="White" SnapsToDevicePixels="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -75,11 +75,13 @@
         <Image Panel.ZIndex="2" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Stretch="None" Source="../../src/logo/small.png"
                Margin="5, 0"/>
 
-        <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ImageBtn}">
+        <Button Grid.Row="0" Grid.Column="3" Style="{StaticResource ImageBtn}"
+                Command="{Binding ShowCommand}" CommandParameter="{Binding LeaderBoard, BindsDirectlyToSource=True}">
             <Image Name="TopImage" Source="../../src/leaderboard.png"/>
         </Button>
 
-        <Button Grid.Row="0" Grid.Column="4" Style="{StaticResource ImageBtn}">
+        <Button Grid.Row="0" Grid.Column="4" Style="{StaticResource ImageBtn}"
+                Command="{Binding ShowCommand}" CommandParameter="{Binding UserPage, BindsDirectlyToSource=True}">
             <Image Name="UserImg" Source="../../src/user.png" Stretch="None"/>
         </Button>
 

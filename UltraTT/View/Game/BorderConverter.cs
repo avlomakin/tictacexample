@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using UltraTT.Command;
 
 namespace UltraTT.View.Game
 {
@@ -9,9 +10,9 @@ namespace UltraTT.View.Game
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var tuple = (Tuple<Func<object, bool>, object>)parameter;
-            var ok = tuple.Item1.Invoke(tuple.Item2);
-            return new Thickness((bool)value && ok ? 2 : 0);
+            //var command = (RelayCommand)parameter;
+            //var ok = command.CanExecute()
+            return new Thickness(2);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

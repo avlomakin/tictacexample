@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UltraTT.View"
         mc:Ignorable="d"
         Icon="../src/logo/icon.ico"
-        Title="UltraTT" Height="440" Width="525">
+        Title="UltraTT" Height="440" Width="526">
     <DockPanel>
         <Frame Name="WorkingFrame" Style="{StaticResource AppFrame}"></Frame>
     </DockPanel>

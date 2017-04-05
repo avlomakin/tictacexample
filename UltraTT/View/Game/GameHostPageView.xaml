@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="525"
       Title="GameHostPageView">
 
-    <Grid>
+    <Grid  SnapsToDevicePixels="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>

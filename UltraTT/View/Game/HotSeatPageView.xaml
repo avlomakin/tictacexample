@@ -3,25 +3,105 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
       xmlns:local="clr-namespace:UltraTT.View.Game"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       xmlns:viewModel="clr-namespace:UltraTT.ViewModel.Game"
       d:DataContext="{d:DesignInstance viewModel:HotSeatPageViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="270"
+      Name="PPage"
+      d:DesignHeight="340" d:DesignWidth="270"
       Title="HotSeatPageView">
 
-    <Grid Height="Auto" Width="Auto">
+    <Page.DataContext>
+        <viewModel:HotSeatPageViewModel/>
+    </Page.DataContext>
+    
+    <Page.Resources>
+
+        <local:BorderConverter x:Key="BorderConverter"/>
+
+        <sys:Double x:Key="CellSize">30</sys:Double>
+
+        <Style TargetType="Button" x:Key="GridButton">
+            <Setter Property="Height" Value="{Binding ElementName=PPage, Path=DataContext.CellSize}"/>
+            <Setter Property="Width" Value="{Binding ElementName=PPage, Path=DataContext.CellSize}"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Command" Value="{Binding ElementName=PPage, Path=DataContext.CellClick}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CommandParameter" Value="{Binding Coords}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border">
+                            <ContentPresenter/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="LightGray"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="DarkRed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <DataTemplate x:Key="SmallCellTemplate">
+            <Button Style="{StaticResource GridButton}">
+                <Image Source="{Binding PictSource}"/>
+            </Button>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FineFieldTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource SmallCellTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="BigCellTemplate">
+            <Border Background="Transparent" BorderThickness="0"
+                    Width="{c:Binding ElementName=PPage, Path=DataContext.CellSize*3}" Height="{c:Binding ElementName=PPage, Path=DataContext.CellSize*3}">
+                <Image Source="{Binding PictSource}"                 
+                       Stretch="Fill"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CoarseFieldTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource BigCellTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+
+    </Page.Resources>
+
+    <Grid Height="Auto" Width="Auto" SnapsToDevicePixels="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
+
         <Label Content="{Binding CurrentPlayer, Mode=OneWay}"/>
 
-
-
         <Grid  Grid.Row="1" Name="FieldHolder" VerticalAlignment="Top">
+            <ItemsControl ItemsSource="{Binding SmallCells}" ItemTemplate="{DynamicResource FineFieldTemplate}"/>
+            <ItemsControl IsHitTestVisible="False" ItemsSource="{Binding BigCells}" ItemTemplate="{DynamicResource CoarseFieldTemplate}"/>
             <Canvas ZIndex="5" Name="BigCellsHolder"/>
             <Image Panel.ZIndex="5" Name="FieldImg" 
                    Source="../../src/game/field.png" Stretch="None" IsHitTestVisible="False"/>

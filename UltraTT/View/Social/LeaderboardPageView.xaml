@@ -1,0 +1,42 @@
+﻿<Page x:Class="UltraTT.View.Social.LeaderboardPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UltraTT.View.Social"
+      xmlns:viewMode="clr-namespace:UltraTT.ViewModel.Social"
+      d:DataContext="{d:DesignInstance viewMode:LeaderboardPageViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="LeaderboardPageView">
+    
+    <Page.Resources>
+        <DataTemplate x:Key="UserRecordTemplate">
+            <Border Margin="5" BorderThickness="1" BorderBrush="SteelBlue" MinWidth="300">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Margin="5" BorderBrush="SteelBlue" BorderThickness="1">
+                        <Image Source="{Binding Path=Avatar, TargetNullValue='../../src/noavatar_small.png'}"  Stretch="Fill" Width="60" Height="60"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" Margin="5" Orientation="Vertical">
+                        <TextBlock FontSize="18" FontWeight="DemiBold" Text="{Binding Path=Username}"/>
+                        <TextBlock Foreground="Gray" Text="{Binding Path=Score}" Padding="5, 0, 0, 0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid  SnapsToDevicePixels="True">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl Margin="10"
+            ItemsSource="{Binding Users}" ItemTemplate="{StaticResource UserRecordTemplate}" BorderThickness="0"/>
+        </ScrollViewer>
+        
+    </Grid>
+</Page>

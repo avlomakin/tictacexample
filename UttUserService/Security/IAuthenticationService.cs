@@ -1,4 +1,4 @@
-﻿using UttUserService.DB.Entities;
+﻿
 
 namespace UttUserService.Security
 {

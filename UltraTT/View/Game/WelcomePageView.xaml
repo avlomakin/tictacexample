@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="WelcomePageView">
 
-    <Grid Height="100">
+    <Grid Height="100"  SnapsToDevicePixels="True">
         <Label FontSize="30" Foreground="LightGray" Name ="WelcomeLabel"
                VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Tahoma Bold"/>
     </Grid>

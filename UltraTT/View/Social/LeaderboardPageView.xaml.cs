@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,19 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using UltraTT.ViewModel.Game;
+using UltraTT.ViewModel.Social;
 
-namespace UltraTT.View.Game
+namespace UltraTT.View.Social
 {
     /// <summary>
-    /// Interaction logic for HotSeatPageView.xaml
+    /// Interaction logic for LeaderboardPageView.xaml
     /// </summary>
-    public partial class HotSeatPageView : Page
+    public partial class LeaderboardPageView : Page
     {
-        HotSeatPageViewModel viewModel;
-
-        public HotSeatPageView()
+        public LeaderboardPageView()
         {
+            DataContext = new LeaderboardPageViewModel();
             InitializeComponent();
         }
     }

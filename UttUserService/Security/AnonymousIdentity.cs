@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using UttUserService.DB.Entities;
+
 
 namespace UttUserService.Security
 {

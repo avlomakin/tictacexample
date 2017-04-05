@@ -6,8 +6,8 @@
     <Application.Resources>
         <Style x:Key="AppFrame" TargetType="Frame">
             <Setter Property="NavigationUIVisibility" Value="Hidden"/>
-            <!--Setter Property="BorderThickness" Value="2"/-->
-            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="DimGray"/>
         </Style>
     </Application.Resources>
 </Application>
