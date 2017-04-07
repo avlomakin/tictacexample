@@ -21,10 +21,12 @@ namespace UltraTT.View.Game
     /// </summary>
     public partial class TopHubPageView : Page
     {
+        private readonly TopHubPageViewModel _viewModel;
         public TopHubPageView()
         {
             InitializeComponent();
-            DataContext = new TopHubPageViewModel();
+            _viewModel = new TopHubPageViewModel();
+            DataContext = _viewModel;
         }
     }
 }

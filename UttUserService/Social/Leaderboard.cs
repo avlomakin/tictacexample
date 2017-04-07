@@ -25,7 +25,7 @@ namespace UttUserService.Social
         private static List<User> UserStorage()
         {
             var rnd = new Random();
-            return new List<User>(Enumerable.Repeat<User>(new User("Lupa", rnd.Next(2000)), 100));
+            return new List<User>(Enumerable.Repeat<User>(new User("Loser", 1234), 100));
         }
 
         #endregion

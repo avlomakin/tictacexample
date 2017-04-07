@@ -28,10 +28,10 @@ namespace UltraTT.ViewModel.Game
                 OnPropertyChanged();
             }
         }
-        public object HotSeat => new HotSeatPageView();
+        public HotSeatPageView HotSeat => new HotSeatPageView();
 
-        public object LeaderBoard => new LeaderboardPageView();
+        public LeaderboardPageView LeaderBoard => new LeaderboardPageView();
 
-        public object UserPage => new UserPageView();
+        public UserPageView UserPage => new UserPageView();
     }
 }

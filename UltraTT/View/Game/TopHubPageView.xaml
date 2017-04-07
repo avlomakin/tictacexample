@@ -8,7 +8,7 @@
       xmlns:viewModel="clr-namespace:UltraTT.ViewModel.Game"
       d:DataContext="{d:DesignInstance viewModel:TopHubPageViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="71" d:DesignWidth="525"
+      d:DesignHeight="200" d:DesignWidth="525"
       Title="TopHubPageView">
 
     <Page.Resources>
@@ -49,7 +49,7 @@
 
     </Page.Resources>
 
-    <Grid Background="White" SnapsToDevicePixels="True">
+    <Grid SnapsToDevicePixels="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -62,7 +62,7 @@
             <RowDefinition Height="{Binding Source={StaticResource BorderSize}}"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="{Binding Source={StaticResource BorderSize}}"/>
-            <RowDefinition Height="1"/>
+            <RowDefinition Height="2"/>
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Grid.Column="0"  Content="Hot seat" Style="{StaticResource HubTextedButton}"
@@ -102,7 +102,8 @@
             </Grid.ColumnDefinitions>
             <Rectangle Panel.ZIndex="1" Grid.Column="0" Stretch="UniformToFill" Fill="Gray"/>
         </Grid>
-        <!--Rectangle Panel.ZIndex="1" Grid.Row="3" Grid.Column="2" Stretch="UniformToFill" Fill="Gray"/>
-        <Border -->
+        <Rectangle Panel.ZIndex="1" Grid.Row="3" Grid.Column="2" Stretch="Fill" Fill="Gray"/>
+        
+        <!--Border -->
     </Grid>
 </Page>

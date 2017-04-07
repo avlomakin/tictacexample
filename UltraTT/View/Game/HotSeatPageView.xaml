@@ -16,12 +16,8 @@
     <Page.DataContext>
         <viewModel:HotSeatPageViewModel/>
     </Page.DataContext>
-    
+
     <Page.Resources>
-
-        <local:BorderConverter x:Key="BorderConverter"/>
-
-        <sys:Double x:Key="CellSize">30</sys:Double>
 
         <Style TargetType="Button" x:Key="GridButton">
             <Setter Property="Height" Value="{Binding ElementName=PPage, Path=DataContext.CellSize}"/>
@@ -91,13 +87,22 @@
 
     <Grid Height="Auto" Width="Auto" SnapsToDevicePixels="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
 
 
-        <Label Content="{Binding CurrentPlayer, Mode=OneWay}"/>
+        <Grid Margin="0, 2, 0, 3">
+            <Label FontWeight="DemiBold"  Content="{Binding CurrentPlayer, Mode=OneWay}" HorizontalAlignment="Left"/>
+
+            <Button Padding="5, 2" HorizontalAlignment="Right" Margin="3"
+                    Command="{Binding NewGameCommand}">
+                <TextBlock Text="NEW GAME" FontWeight="DemiBold" FontSize="14"></TextBlock>
+            </Button>
+        </Grid>
+
 
         <Grid  Grid.Row="1" Name="FieldHolder" VerticalAlignment="Top">
             <ItemsControl ItemsSource="{Binding SmallCells}" ItemTemplate="{DynamicResource FineFieldTemplate}"/>

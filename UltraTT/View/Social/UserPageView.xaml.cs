@@ -22,9 +22,11 @@ namespace UltraTT.View.Social
     /// </summary>
     public partial class UserPageView : Page
     {
+        private UserPageViewModel _viewModel;
         public UserPageView()
         {
-            DataContext = new UserPageViewModel();
+            _viewModel = new UserPageViewModel();
+            DataContext = _viewModel;
             InitializeComponent();
         }
     }

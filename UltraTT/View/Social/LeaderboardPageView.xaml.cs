@@ -21,6 +21,8 @@ namespace UltraTT.View.Social
     /// </summary>
     public partial class LeaderboardPageView : Page
     {
+        private LeaderboardPageViewModel _viewModel;
+
         public LeaderboardPageView()
         {
             DataContext = new LeaderboardPageViewModel();

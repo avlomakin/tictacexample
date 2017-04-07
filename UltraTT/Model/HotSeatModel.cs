@@ -57,7 +57,6 @@ namespace UltraTT.Model
             if (GameField.CoarseField.Cells[position] != Cell.Empty)
             {
                 _currentCell = -1;
-                NeedPickBigCell?.Invoke(this, new EventArgs());
             }
 
         }

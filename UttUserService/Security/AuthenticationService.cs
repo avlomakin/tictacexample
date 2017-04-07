@@ -8,6 +8,7 @@ namespace UttUserService.Security
 {
     public class AuthenticationService : IAuthenticationService
     {
+
         public User AuthenticateUser(string username, string textPassword)
         {
             User user = Users.FirstOrDefault(u => u.Username == username);

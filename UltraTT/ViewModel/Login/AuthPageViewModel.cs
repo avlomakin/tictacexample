@@ -8,7 +8,7 @@ namespace UltraTT.ViewModel.Login
 {
     public class AuthPageViewModel : BaseViewModel
     {
-        private AuthenticationService _authenticationService;
+        private IAuthenticationService _authenticationService;
 
         public AuthPageViewModel()
         {

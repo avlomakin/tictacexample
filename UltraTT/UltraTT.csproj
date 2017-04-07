@@ -184,6 +184,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Social.cd" />
+    <None Include="TopHubDiagram.cd" />
+    <None Include="NavigatorDiagram.cd" />
+    <None Include="AuthDiagram.cd" />
+    <None Include="HotSeatClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

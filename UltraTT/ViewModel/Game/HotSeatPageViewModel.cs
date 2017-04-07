@@ -17,16 +17,9 @@ namespace UltraTT.ViewModel.Game
 
         public HotSeatPageViewModel()
         {
-            _model = new HotSeatModel();
-            _model.NewGame();
-            _model.GotWinner += OnGotWinner;
-            _model.NeedPickBigCell += OnNeedSelectBigCell;
-            _model.SetPlayer += OnSetPlayer;
-            _model.ChangeCellPict += OnChangeCellPict;
-            _model.ChangeBigCellPict += OnBigCellOwnerChanged;
-
-            _currentPlayer = Cross;
-
+            _cellClick = new RelayCommand(MakeStep, CheckCell);
+            _newGameCommand = new SimpleCommand(NewGame);
+ 
             _smallCells = new List<List<ViewModelCell>>();
 
             for (int i = 0; i < 9; i++)
@@ -35,7 +28,6 @@ namespace UltraTT.ViewModel.Game
                 for (int j = 0; j < 9; j++)
                 {
                     var vmCell = new ViewModelCell();
-                    vmCell.PictSource = GetCellPictPath(Cell.Empty);
                     vmCell.Coords = CoordChanger(i, j);
                     _smallCells[i].Add(vmCell);
                 }
@@ -49,16 +41,14 @@ namespace UltraTT.ViewModel.Game
                 for (int j = 0; j < 3; j++)
                 {
                     var vmCell = new ViewModelCell();
-                    vmCell.PictSource = GetBigCellPictPath(Cell.Empty);
                     vmCell.Coords = null;
                     _bigCells[i].Add(vmCell);
                 }
             }
-
-
-            _cellClick = new RelayCommand(MakeStep, CheckCell);
-
+            
+            NewGame();
         }
+
 
         #region Properties
 
@@ -79,6 +69,7 @@ namespace UltraTT.ViewModel.Game
             }
         }
 
+        /// <summary></summary>
         private List<List<ViewModelCell>> _bigCells;
         public List<List<ViewModelCell>> BigCells
         {
@@ -110,6 +101,22 @@ namespace UltraTT.ViewModel.Game
         }
 
 
+        private SimpleCommand  _newGameCommand;
+        public SimpleCommand  NewGameCommand
+        {
+            get
+            {
+                return _newGameCommand;
+            }
+            set
+            {
+                _newGameCommand = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+
         private string _currentPlayer;//Cross or Nought
         public string CurrentPlayer
         {
@@ -125,21 +132,6 @@ namespace UltraTT.ViewModel.Game
             }
         }
 
-
-        private bool _isBigCellSelected;
-        public bool IsBigCellSelected
-        {
-            get
-            {
-                return _isBigCellSelected;
-            }
-            set
-            {
-                _isBigCellSelected = value;
-
-                OnPropertyChanged();
-            }
-        }
 
         #endregion
 
@@ -159,15 +151,6 @@ namespace UltraTT.ViewModel.Game
             CurrentPlayer = $"Got winner: {_currentPlayer}";
         }
 
-        public void OnNeedSelectBigCell(object sender, EventArgs args)
-        {
-            _isBigCellSelected = false;
-        }
-
-        public void OnBigCellSelected(object sender, EventArgs args)
-        {
-            _isBigCellSelected = true;
-        }
 
         public void OnChangePlayer(object sender, EventArgs args)
         {
@@ -192,6 +175,36 @@ namespace UltraTT.ViewModel.Game
 
         #endregion
 
+
+        public void NewGame()
+        {
+            _model = new HotSeatModel();
+            _model.NewGame();
+            _model.GotWinner += OnGotWinner;
+            _model.SetPlayer += OnSetPlayer;
+            _model.ChangeCellPict += OnChangeCellPict;
+            _model.ChangeBigCellPict += OnBigCellOwnerChanged;
+
+            _currentPlayer = Cross;
+
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    _smallCells[i][j].PictSource = GetCellPictPath(Cell.Empty);
+                }
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    _bigCells[i][j].PictSource = GetBigCellPictPath(Cell.Empty);
+                }
+            }
+
+
+        }
 
         public bool CheckCell(object obj)
         {
